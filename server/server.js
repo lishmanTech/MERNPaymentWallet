@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path')
-const {fileURLToPah} = require('url')
 
 require('dotenv').config();
 app.use(express.json())
@@ -11,14 +10,14 @@ const usersRoute = require('./routes/usersRoute')
 const transactionRoute = require('./routes/transactionRoute')
 const requestRoute = require('./routes/requestsRoute')
 
- app.use(express.static(path.join(__dirname, './client/build')))
+ app.use(express.static(path.join(__dirname, "./client/build")))
 
 app.use('/api/users', usersRoute);
 app.use('/api/transactions', transactionRoute);
 app.use('/api/requests', requestRoute)
 
 
-app.use('*',function(req, res){
+app.use('*', function(req, res){
    res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
